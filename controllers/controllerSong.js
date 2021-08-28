@@ -1,5 +1,6 @@
 const controller={};
 const Song=require('../models/songs');
+const {validationResult} = require('express-validator');
 
 controller.getAll=async(req,res)=>{
     const songs=await Song.find();
@@ -7,7 +8,6 @@ controller.getAll=async(req,res)=>{
     res.json({message: 'Succes', songs}):
     res.status(404).json({message: 'Error, no songs found'});
 }
-
 
 controller.getTrack=async (req,res)=>{
     const song=await Song.findOne({track: req.body.track});
@@ -24,6 +24,9 @@ controller.getById=async (req,res)=>{
 }
 
 controller.saved=async (req,res)=>{
+    const errors = validationResult(req);
+    if (!errors.isEmpty())
+        return res.status(422).json({ errors: errors.array() })
     const newSong = new Song({
         track: req.body.track,
         artist: req.body.artist,
@@ -32,23 +35,33 @@ controller.saved=async (req,res)=>{
     await newSong.save();
     (newSong)?
         res.json({message: 'Song Saved', newSong}):
-        res.status(401).json({message: 'Error, song not saved'});        
+        res.status(401).json({message: 'Error, song not saved'});   
 }
 
 controller.put=async (req,res)=>{
-    const song=await Song.findById({_id: req.params.songId});
-    if(song){
-        song.track=req.body.track;
-        song.artist=req.body.artist;
-        song.album=req.body.album;
-        song.save();
-        res.json({message:'Updated', song});
-    }else
-    res.status(404).json({message: 'song not found'});
+    const errors = validationResult(req);
+    if(!errors.isEmpty())
+        return res.status(422).json({errors: errors.array()});
 
+    const {track,artist,album} = req.body;
+    if(track || artist || album){
+        const song=await Song.findById({_id: req.params.songId});
+        if(song){
+            song.track=track;
+            song.artist=artist;
+            song.album=album;
+            song.save();
+            res.json({message:'Uz1pdated', song});
+        }else
+        res.status(404).json({message: 'song not found'});
+    }else
+    res.status(400).json({message: 'Invalid Form'});    
+    
 }
 
 controller.delete=async (req,res)=>{
+    const errors = validationResult(req);
+    if(!errors.isEmpty()) return res.status(422).json({errors: errors.array()});
     const song=await Song.findById({_id: req.params.songId});
     if(song){
         await song.remove();
@@ -58,6 +71,12 @@ controller.delete=async (req,res)=>{
     res.status(404).json({message: 'Error, song not found'});
 }
 
+function validation(req,res){
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(422).json({ errors: errors.array() })
+    }
+}
 
 
 
