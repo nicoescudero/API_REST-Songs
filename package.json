@@ -8,8 +8,8 @@
   "dev": "nodemon index"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "https://github.com/nicoescudero",
+  "license": "MIT",
   "devDependencies": {
     "morgan": "^1.10.0",
     "nodemon": "^2.0.12"

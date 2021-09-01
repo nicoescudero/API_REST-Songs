@@ -1,5 +1,5 @@
 const mongoose= require('mongoose');
-const uri=process.env.URI_DB || 'mongodb://localhost/Songs';
+const uri=`mongodb+srv://nicox11:okmijnuhb@cluster0.o9y9e.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 const options={
     useNewUrlParser: true,
     useUnifiedTopology: true,
