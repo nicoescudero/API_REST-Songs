@@ -1,6 +1,6 @@
 const app=require('./configuration/server');
 //configuration of file .env
-require('dotenv');
+//require('dotenv');
 //start db
 require('./configuration/database');
 
