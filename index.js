@@ -5,5 +5,4 @@ const app=require('./configuration/server');
 require('./configuration/database');
 
 //start server
-const port=process.env.PORT || 3000;
-app.listen(port,()=> console.log(`Connected on port: ${port}`));
+app.listen(app.get('port'),()=> console.log(`Connected on port: ${app.get('port')}`));
