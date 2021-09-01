@@ -5,4 +5,5 @@ require('dotenv');
 require('./configuration/database');
 
 //start server
-app.listen(app.get('port'),()=> console.log(`Connected on port: ${app.get('port')}`));
+const port=process.env.PORT || 3000;
+app.listen(port,()=> console.log(`Connected on port: ${port}`));
