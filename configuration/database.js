@@ -1,5 +1,5 @@
 const mongoose= require('mongoose');
-const uri= 'mongodb+srv://'+process.env.USER_DB+':'+process.env.PASSWORD_DB+'@cluster0.o9y9e.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+const uri= 'mongodb+srv://'+process.env.USERDB+':'+process.env.PASSWORDDB+'@cluster0.o9y9e.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 
 const options={
     useNewUrlParser: true,
