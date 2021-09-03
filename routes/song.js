@@ -3,8 +3,9 @@ const route= Router();
 const controller=require('../controllers/controllerSong');
 const {check}=require('express-validator');
 
+
 route.get('/',controller.getAll);
-route.get('/track',controller.getTrack);
+route.get('/track/:name',controller.getTrack);
 route.get('/id/:songId',controller.getById);
 
 route.post('/',

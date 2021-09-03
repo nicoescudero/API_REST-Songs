@@ -6,20 +6,20 @@ controller.getAll=async(req,res)=>{
     const songs=await Song.find();
     (songs)?
     res.json({message: 'Succes', songs}):
-    res.status(404).json({message: 'Error, no songs found'});
+    res.status(404).json({message: 'Error, song not found'});
 }
 
 controller.getTrack=async (req,res)=>{
-    const song=await Song.findOne({track: req.body.track});
+    const song=await Song.findOne({track: req.params.name});
     (song)?
-    res.json({message: 'Song found', song}):
+    res.json({message: 'Succes', song}):
     res.status(404).json({message: 'Error, song not found'});
 }
 
 controller.getById=async (req,res)=>{
     const song=await Song.findById({_id: req.params.songId});
     (song)?
-    res.json(song):
+    res.json({message: 'Succes',song}):
     res.status(404).json({message: 'Error, song not found'});
 }
 
@@ -35,7 +35,7 @@ controller.saved=async (req,res)=>{
     await newSong.save();
     (newSong)?
         res.json({message: 'Song Saved', newSong}):
-        res.status(401).json({message: 'Error, song not saved'});   
+        res.status(400).json({message: 'Error, song not saved'});   
 }
 
 controller.put=async (req,res)=>{
@@ -51,9 +51,9 @@ controller.put=async (req,res)=>{
             song.artist=artist;
             song.album=album;
             song.save();
-            res.json({message:'Uz1pdated', song});
+            res.json({message:'Updated', song});
         }else
-        res.status(404).json({message: 'song not found'});
+        res.status(404).json({message: 'Error, song not found'});
     }else
     res.status(400).json({message: 'Invalid Form'});    
     

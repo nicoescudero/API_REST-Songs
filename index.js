@@ -1,5 +1,5 @@
 const app=require('./configuration/server');
-//configuration of file .env
+//get .env
 require('dotenv').config();
 //start db
 require('./configuration/database');
