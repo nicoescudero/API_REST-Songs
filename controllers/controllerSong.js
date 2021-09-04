@@ -34,7 +34,7 @@ controller.saved=async (req,res)=>{
     });
     await newSong.save();
     (newSong)?
-        res.json({message: 'Song Saved', newSong}):
+        res.status(201).json({message: 'Song Saved', newSong}):
         res.status(400).json({message: 'Error, song not saved'});   
 }
 
@@ -51,7 +51,7 @@ controller.put=async (req,res)=>{
             song.artist=artist;
             song.album=album;
             song.save();
-            res.json({message:'Updated', song});
+            res.status(201).json({message:'Updated', song});
         }else
         res.status(404).json({message: 'Error, song not found'});
     }else

@@ -148,7 +148,7 @@
  *      schema:
  *       $ref: "#components/schemas/SongRequirements"
  *   responses:
- *    200:
+ *    201:
  *     $ref: "#components/responses/Success"
  *    400:
  *     $ref: "#components/responses/BadRequest"
@@ -170,7 +170,7 @@
  *      schema:
  *       $ref: "#components/schemas/SongRequirements"
  *   responses:
- *    200:
+ *    201:
  *     $ref: "#components/responses/Success"
  *    400:
  *     $ref: "#components/responses/BadRequest"
