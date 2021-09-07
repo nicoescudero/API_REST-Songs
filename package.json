@@ -1,23 +1,32 @@
 {
   "name": "api-songs",
   "version": "1.0.0",
-  "description": "",
+  "description": "A song api",
   "main": "index.js",
   "scripts": {
-    "start": "node index",
-    "dev": "nodemon index"
+    "start": "NODE_ENV=production node index",
+    "dev": "NODE_ENV=development nodemon index",
+    "test": "NODE_ENV=test jest --verbose --silent --detectOpenHandles",
+    "test:watch":"npm run test -- --watch"
+  },
+  "jest": {
+    "testEnvironment": "node"
   },
   "keywords": [],
-  "author": "https://github.com/nicoescudero",
+  "author": "@nicoescudero",
   "license": "MIT",
   "dependencies": {
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-validator": "^6.12.1",
-    "mongoose": "^6.0.0",
+    "mongoose": "^6.0.4"
+  },
+  "devDependencies": {
+    "swagger-jsdoc": "^6.1.0",
+    "swagger-ui-express": "^4.1.6",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.12",
-    "swagger-jsdoc": "^6.1.0",
-    "swagger-ui-express": "^4.1.6"
+    "jest": "^27.1.0",
+    "supertest": "^6.1.6"
   }
 }
